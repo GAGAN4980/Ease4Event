@@ -4,46 +4,127 @@
     ViewData["Title"] = "Events List";
 }
 
-<h2>Events</h2>
+<style>
+    body {
+        background-color: #0a192f;
+        color: #f0f4f8;
+    }
 
-<p>
-    <a asp-action="Create" class="btn btn-primary">Create New Event</a>
-</p>
+    h2 {
+        color: #00bfa6 !important;
+    }
+
+    .text-muted {
+        color: #a1c3d1 !important;
+    }
+
+    .btn-success {
+        background-color: #00bfa6;
+        border-color: #00bfa6;
+        color: #fff;
+    }
+
+        .btn-success:hover {
+            background-color: #00a58f;
+            border-color: #009e88;
+        }
+
+    .alert-info {
+        background-color: #1e3a5f;
+        border-color: #29668b;
+        color: #d0eaff;
+    }
+
+    .table-responsive {
+        background-color: #112d4e;
+        padding: 1rem;
+        border-radius: 1rem;
+    }
+
+    table.table {
+        background-color: #112d4e;
+        color: #f0f4f8;
+    }
+
+    .table thead {
+        background-color: #1f3b5c;
+        color: #e0f7fa;
+    }
+
+    .table td,
+    .table th {
+        border-color: #2a3f57;
+    }
+
+    .btn-outline-warning {
+        color: #ffca28;
+        border-color: #ffca28;
+    }
+
+        .btn-outline-warning:hover {
+            background-color: #ffca28;
+            color: #000;
+        }
+
+    .btn-outline-danger {
+        color: #ef5350;
+        border-color: #ef5350;
+    }
+
+        .btn-outline-danger:hover {
+            background-color: #ef5350;
+            color: #fff;
+        }
+</style>
+
+<div class="text-center mb-4">
+    <h2 class="fw-bold">Your Events</h2>
+    <p class="text-muted">Manage your community events here.</p>
+    <a asp-action="Create" class="btn btn-success btn-lg mt-3">
+        <i class="bi bi-plus-circle"></i> Create New Event
+    </a>
+</div>
 
 @if (!Model.Any())
 {
-    <div class="alert alert-info">
-        No events found. Click <strong>"Create New Event"</strong> to add your first event.
+    <div class="alert alert-info text-center">
+        <strong>No events found.</strong> Click the <em>"Create New Event"</em> button above to add your first one.
     </div>
 }
 else
 {
-    <table class="table table-striped">
-        <thead>
-            <tr>
-                <th>Title</th>
-                <th>Description</th>
-                <th>Date</th>
-                <th>Time</th>
-                <th>Location</th>
-                <th>Actions</th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach (var item in Model)
-            {
+    <div class="table-responsive shadow rounded">
+        <table class="table align-middle border">
+            <thead>
                 <tr>
-                    <td>@item.Title</td>
-                    <td>@item.Description</td>
-                    <td>@item.Date.ToShortDateString()</td>
-                    <td>@item.Time.ToString(@"hh\:mm")</td>
-                    <td>@item.Location</td>
-                    <td>
-                        <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-warning btn-sm">Edit</a>
-                        <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-danger btn-sm">Delete</a>
-                    </td>
+                    <th scope="col">Title</th>
+                    <th scope="col">Description</th>
+                    <th scope="col">Date</th>
+                    <th scope="col">Time</th>
+                    <th scope="col">Location</th>
+                    <th scope="col">Actions</th>
                 </tr>
-            }
-        </tbody>
-    </table>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>@item.Title</td>
+                        <td>@item.Description</td>
+                        <td>@item.Date.ToString("yyyy-MM-dd")</td>
+                        <td>@item.Time.ToString(@"hh\:mm")</td>
+                        <td>@item.Location</td>
+                        <td>
+                            <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-outline-warning btn-sm me-1">
+                                <i class="bi bi-pencil-square"></i> Edit
+                            </a>
+                            <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-outline-danger btn-sm">
+                                <i class="bi bi-trash"></i> Delete
+                            </a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
 }

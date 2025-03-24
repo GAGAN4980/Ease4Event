@@ -1,36 +1,99 @@
-@model Ease4Event.Models.Event
+﻿@model Ease4Event.Models.Event
 
 @{
     ViewData["Title"] = "Delete Event";
 }
 
-<h2>Delete Event</h2>
+<style>
+    .card {
+        background-color: #112d4e;
+        color: #f0f4f8;
+    }
 
-<h4>Are you sure you want to delete this event?</h4>
-<hr />
-<div class="row">
-    <div class="col-md-6">
-        <dl class="row">
-            <dt class="col-sm-4">Title</dt>
-            <dd class="col-sm-8">@Model.Title</dd>
+    .card-title {
+        color: #ff6b6b !important;
+    }
 
-            <dt class="col-sm-4">Description</dt>
-            <dd class="col-sm-8">@Model.Description</dd>
+    .lead {
+        color: #dce3e9;
+    }
 
-            <dt class="col-sm-4">Date</dt>
-            <dd class="col-sm-8">@Model.Date.ToString("yyyy-MM-dd")</dd>
+    .fw-semibold {
+        color: #a9c1d9;
+    }
 
-            <dt class="col-sm-4">Time</dt>
-            <dd class="col-sm-8">@Model.Time.ToString(@"hh\:mm")</dd>
+    dd {
+        color: #ffffff;
+    }
 
-            <dt class="col-sm-4">Location</dt>
-            <dd class="col-sm-8">@Model.Location</dd>
-        </dl>
+    hr {
+        border-top: 1px solid #3a4f66;
+    }
 
-        <form asp-action="Delete" method="post">
-            <input type="hidden" asp-for="Id" />
-            <button type="submit" class="btn btn-danger">Delete</button>
-            <a asp-action="Index" class="btn btn-secondary">Cancel</a>
-        </form>
+    .btn-danger {
+        background-color: #d32f2f;
+        border-color: #c62828;
+    }
+
+        .btn-danger:hover {
+            background-color: #b71c1c;
+            border-color: #b71c1c;
+        }
+
+    .btn-outline-secondary {
+        color: #c9d6df;
+        border-color: #3a4f66;
+    }
+
+        .btn-outline-secondary:hover {
+            background-color: #3a4f66;
+            border-color: #526a84;
+            color: #ffffff;
+        }
+</style>
+
+
+<div class="row justify-content-center">
+    <div class="col-md-8">
+        <div class="card shadow-sm rounded-4 border-0">
+            <div class="card-body">
+                <h2 class="card-title text-danger text-center mb-4">
+                    <i class="bi bi-exclamation-triangle-fill"></i> Delete Event
+                </h2>
+
+                <p class="text-center lead">Are you sure you want to delete this event?</p>
+
+                <hr />
+
+                <dl class="row">
+                    <dt class="col-sm-4 fw-semibold">Title</dt>
+                    <dd class="col-sm-8">@Model.Title</dd>
+
+                    <dt class="col-sm-4 fw-semibold">Description</dt>
+                    <dd class="col-sm-8">@Model.Description</dd>
+
+                    <dt class="col-sm-4 fw-semibold">Date</dt>
+                    <dd class="col-sm-8">@Model.Date.ToString("yyyy-MM-dd")</dd>
+
+                    <dt class="col-sm-4 fw-semibold">Time</dt>
+                    <dd class="col-sm-8">@Model.Time.ToString(@"hh\:mm")</dd>
+
+                    <dt class="col-sm-4 fw-semibold">Location</dt>
+                    <dd class="col-sm-8">@Model.Location</dd>
+                </dl>
+
+                <div class="text-center mt-4">
+                    <form asp-action="Delete" method="post">
+                        <input type="hidden" asp-for="Id" />
+                        <button type="submit" class="btn btn-danger btn-lg me-2">
+                            <i class="bi bi-trash"></i> Confirm Delete
+                        </button>
+                        <a asp-action="Index" class="btn btn-outline-secondary btn-lg">
+                            Cancel
+                        </a>
+                    </form>
+                </div>
+            </div>
+        </div>
     </div>
 </div>

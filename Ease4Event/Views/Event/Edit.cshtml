@@ -4,34 +4,137 @@
     ViewData["Title"] = "Edit Event";
 }
 
-<h2>Edit Event</h2>
+<style>
 
-<form asp-action="Edit" method="post">
-    <input type="hidden" asp-for="Id" />
-    <div class="form-group">
-        <label asp-for="Title"></label>
-        <input asp-for="Title" class="form-control" />
-        <span asp-validation-for="Title" class="text-danger"></span>
+    .card {
+        background-color: #112d4e;
+        color: #f0f4f8;
+    }
+
+    .card-title {
+        color: #00bfa6 !important;
+    }
+
+    .form-label {
+        color: #dbeaf2;
+    }
+
+    .form-control {
+        background-color: #1f3b5c;
+        color: #f0f4f8;
+        border: 1px solid #1f3b5c;
+    }
+
+        .form-control::placeholder {
+            color: #a1c3d1;
+        }
+
+        .form-control:focus {
+            background-color: #0f2c4d;
+            color: #ffffff;
+            border-color: #00bfa6;
+            box-shadow: 0 0 0 0.2rem rgba(0, 191, 166, 0.25);
+        }
+
+    .text-danger {
+        color: #ff6b6b !important;
+    }
+
+    .btn-success {
+        background-color: #00bfa6;
+        border-color: #00bfa6;
+    }
+
+        .btn-success:hover {
+            background-color: #00a58f;
+            border-color: #009e88;
+        }
+
+    .btn-outline-secondary {
+        color: #c9d6df;
+        border-color: #3a4f66;
+    }
+
+        .btn-outline-secondary:hover {
+            background-color: #3a4f66;
+            border-color: #526a84;
+            color: #ffffff;
+        }
+
+    input[type="date"],
+    input[type="time"] {
+        color-scheme: dark;
+        background-color: #1f3b5c;
+        color: #ffffff;
+        border: 1px solid #1f3b5c;
+    }
+
+        input[type="date"]:focus,
+        input[type="time"]:focus {
+            border-color: #00bfa6;
+            box-shadow: 0 0 0 0.2rem rgba(0, 191, 166, 0.25);
+        }
+
+        input[type="date"]::-webkit-calendar-picker-indicator,
+        input[type="time"]::-webkit-calendar-picker-indicator {
+            filter: invert(1);
+            opacity: 0.8;
+        }
+</style>
+
+
+<div class="row justify-content-center">
+    <div class="col-md-8">
+        <div class="card shadow-sm rounded-4 border-0">
+            <div class="card-body">
+                <h2 class="card-title text-center text-primary mb-4">
+                    <i class="bi bi-pencil-square"></i> Edit Event
+                </h2>
+
+                <form asp-action="Edit" method="post">
+                    <input type="hidden" asp-for="Id" />
+
+                    <div class="mb-3">
+                        <label asp-for="Title" class="form-label"></label>
+                        <input asp-for="Title" class="form-control" placeholder="Event title" />
+                        <span asp-validation-for="Title" class="text-danger"></span>
+                    </div>
+
+                    <div class="mb-3">
+                        <label asp-for="Description" class="form-label"></label>
+                        <textarea asp-for="Description" class="form-control" rows="4" placeholder="Event description..."></textarea>
+                        <span asp-validation-for="Description" class="text-danger"></span>
+                    </div>
+
+                    <div class="row mb-3">
+                        <div class="col-md-6">
+                            <label asp-for="Date" class="form-label"></label>
+                            <input asp-for="Date" type="date" class="form-control" />
+                            <span asp-validation-for="Date" class="text-danger"></span>
+                        </div>
+                        <div class="col-md-6">
+                            <label asp-for="Time" class="form-label"></label>
+                            <input asp-for="Time" type="time" class="form-control" />
+                            <span asp-validation-for="Time" class="text-danger"></span>
+                        </div>
+                    </div>
+
+                    <div class="mb-3">
+                        <label asp-for="Location" class="form-label"></label>
+                        <input asp-for="Location" class="form-control" placeholder="Event location" />
+                        <span asp-validation-for="Location" class="text-danger"></span>
+                    </div>
+
+                    <div class="text-center">
+                        <button type="submit" class="btn btn-success btn-lg me-2">
+                            <i class="bi bi-save"></i> Save Changes
+                        </button>
+                        <a asp-action="Index" class="btn btn-outline-secondary btn-lg">
+                            Cancel
+                        </a>
+                    </div>
+                </form>
+            </div>
+        </div>
     </div>
-    <div class="form-group">
-        <label asp-for="Description"></label>
-        <textarea asp-for="Description" class="form-control"></textarea>
-        <span asp-validation-for="Description" class="text-danger"></span>
-    </div>
-    <div class="form-group">
-        <label asp-for="Date"></label>
-        <input asp-for="Date" type="date" class="form-control" />
-        <span asp-validation-for="Date" class="text-danger"></span>
-    </div>
-    <div class="form-group">
-        <label asp-for="Time"></label>
-        <input asp-for="Time" type="time" class="form-control" />
-        <span asp-validation-for="Time" class="text-danger"></span>
-    </div>
-    <div class="form-group">
-        <label asp-for="Location"></label>
-        <input asp-for="Location" class="form-control" />
-        <span asp-validation-for="Location" class="text-danger"></span>
-    </div>
-    <button type="submit" class="btn btn-success">Save</button>
-</form>
+</div>
