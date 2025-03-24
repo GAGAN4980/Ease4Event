@@ -1,29 +1,24 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System;
+using System.ComponentModel.DataAnnotations;
 
 namespace Ease4Event.Models
 {
     public class Event
-	{
-        [Key]
+    {
         public int Id { get; set; }
 
         [Required]
-        [StringLength(100)]
         public string Title { get; set; }
 
-        [Required]
-        [StringLength(500)]
+        [DataType(DataType.MultilineText)]
         public string Description { get; set; }
 
-        [Required]
+        [DataType(DataType.Date)]
         public DateTime Date { get; set; }
 
-        [Required]
+        [DataType(DataType.Time)]
         public TimeSpan Time { get; set; }
 
-        [Required]
-        [StringLength(200)]
         public string Location { get; set; }
     }
 }
-
