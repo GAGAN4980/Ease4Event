@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Authorization;
 using System.Threading.Tasks;
 namespace Ease4Event.Controllers
 {
-    //[Authorize] // Ensures only authenticated users can access event actions
+    [Authorize] // Ensures only authenticated users can access event actions
     public class EventController : Controller
     {
         private readonly ApplicationDbContext _context;
